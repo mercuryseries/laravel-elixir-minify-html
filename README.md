@@ -23,7 +23,7 @@ The `html` method can take up to four arguments:
 
   1. `src` (required): The files to minify.
   2. `outputPath` (optional): The output folder (defaults to `storage/framework/views`).
-  3. `options` (optional):  Options object passed to the `gulp-html-minify` task.
+  3. `options` (optional):  Options object passed to the `gulp-htmlmin` task.
 
 This task defines a watcher for the path defined in `src`.
 
