@@ -1,7 +1,6 @@
 var gulp         = require('gulp');
 var elixir       = require('laravel-elixir');
 var htmlmin      = require('gulp-htmlmin');
-var config       = elixir.config;
 
 /**
  * Minify static html pages, useful when using html partials loaded though ajax
@@ -17,21 +16,25 @@ elixir.extend('html', function(src, outputPath, options) {
     }
 
     // Parse the source and output paths
-    var paths = new elixir.GulpPaths()
-        .src(src || 'storage/framework/views/*')
-        .output(outputPath || 'storage/framework/views/');
+    src = src || 'storage/framework/views/*';
+    outputPath = outputPath || 'storage/framework/views/';
+
+    var paths = {
+        src: src,
+        outputPath: outputPath
+    };
 
     options = typeof options == 'undefined' ? {} : options;
 
     new elixir.Task('minify', function() {
         var minifyOptions = options;
 
-        return gulp.src(paths.src.path)
+        return gulp.src(paths.src)
             .pipe(htmlmin(minifyOptions))
-            .pipe(gulp.dest(paths.output.path))
+            .pipe(gulp.dest(paths.outputPath))
             .pipe(new elixir.Notification('HTML Minified!'));
     })
     // Register watcher for source path
-    .watch(paths.src.path);
+    .watch(paths.src);
 
 });
