@@ -19,7 +19,7 @@ require('laravel-elixir-minify-html');
 
 Then call the `html` method from your mix.
 
-The `html` method can take up to four arguments:
+The `html` method can take up to three arguments:
 
   1. `src` (required): The files to minify.
   2. `outputPath` (optional): The output folder (defaults to `storage/framework/views`).
